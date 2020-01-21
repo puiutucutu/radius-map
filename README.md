@@ -11,7 +11,7 @@ Preconfigured `leaflet` map using a circle from `leaflet-draw` for implementing 
 ## Features
 
 * programatically draw a circle
-* hooks for on draw and on draw error callbacks
+* callback hooks for on draw and on draw error
 * does not bundle `leaflet` or `leaflet-draw` dependencies making for a light build (264 kB)
 
 ## Use
