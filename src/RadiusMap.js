@@ -99,7 +99,7 @@ class RadiusMap {
     this.editableLayers.clearLayers();
     this.editableLayers.addLayer(circleEntity);
     const layerId = this.editableLayers.getLayerId(circleEntity);
-    const { lat, lng } = circleEntity.getBounds().getCenter(); // object property destructuring
+    const { lat, lng } = circleEntity.getBounds().getCenter();
 
     this.updateCallback(layerId, radius, lat, lng);
   }
@@ -116,7 +116,7 @@ class RadiusMap {
       this.layerId = this.editableLayers.getLayerId(layer);
 
       const radius = layer.getRadius();
-      const { lat, lng } = layer.getBounds().getCenter(); // object property destructuring
+      const { lat, lng } = layer.getBounds().getCenter();
 
       if (this.isRadiusBelowLimit(radius)) {
         this.updateCallback(this.layerId, radius, lat, lng);
@@ -134,7 +134,7 @@ class RadiusMap {
       const editedLayer = this.editableLayers.getLayer(this.layerId); // event does not supply the list of layers
 
       const radius = editedLayer.getRadius();
-      const { lat, lng } = editedLayer.getBounds().getCenter(); // object property destructuring
+      const { lat, lng } = editedLayer.getBounds().getCenter();
 
       if (this.isRadiusBelowLimit(radius)) {
         this.updateCallback(this.layerId, radius, lat, lng);
@@ -153,7 +153,7 @@ class RadiusMap {
   handleEditResize() {
     this.map.on(L.Draw.Event.EDITRESIZE, event => {
       const { layer } = event;
-      const { lat, lng } = layer.getBounds().getCenter(); // object property destructuring
+      const { lat, lng } = layer.getBounds().getCenter();
       const radius = layer.getRadius();
       this.updateCallback(this.layerId, radius, lat, lng);
     });
