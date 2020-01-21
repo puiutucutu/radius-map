@@ -42,7 +42,7 @@ class RadiusMap {
   errorCallback;
 
   /**
-   * @param {L.Map} map An Leaflet map instance
+   * @param {L.Map} map A Leaflet map instance
    * @param {updateCallbackSignature} updateCallback
    * @param {errorCallbackSignature} errorCallback
    * @param {number} [radiusLimit=5000]] In meters
