@@ -1,6 +1,6 @@
 {
   "name": "radius-map",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "preconfigured `leaflet` map using a circle from `leaflet-draw` for implementing a within radius search on a map.",
   "main": "dist/radiusmap.cjs.js",
   "module": "dist/radiusmap.esm.js",
