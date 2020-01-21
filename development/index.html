@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Radius Map - Development</title>
+    <link rel="stylesheet" href="./node_modules/tachyons/css/tachyons.min.css" />
+    <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="./node_modules/leaflet-draw/dist/leaflet.draw.css" />
+  </head>
+  <body>
+    <section class="flex flex-row w-100 vh-100 bg-light-gray sans-serif">
+      <main class="w-70" id="map"></main>
+      <aside
+        class="w-30 ma3 pa3 br3 bg-white shadow-4"
+        style="height: fit-content"
+      >
+        <span class="db f4 b mb3">On Update Callback Output</span>
+        <span
+          id="radius-details"
+          class="db w-100 h4 pa2 border-box pre code ba b--light-gray overflow-hidden"
+        ></span>
+      </aside>
+    </section>
+  </body>
+
+  <script src="./node_modules/leaflet/dist/leaflet.js"></script>
+  <script src="./node_modules/leaflet-draw/dist/leaflet.draw.js"></script>
+  <script src="./dist/radiusmap.umd.js"></script>
+  <script type="application/javascript">
+    function makeMap(htmlRef) {
+      const tileLayers = {
+        osm: L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { id: "osm" }), // prettier-ignore
+        cartodbLightAll: L.tileLayer("http://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png", { id: "cartodbLightAll" }), // prettier-ignore
+        stamenToner: L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png", { id: "stamenToner" }), // prettier-ignore
+        stamenTonerLite: L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png", { id: "stamenTonerLite" }) // prettier-ignore
+      };
+
+      const baseLayers = {
+        Coloured: tileLayers.osm,
+        Light: tileLayers.cartodbLightAll,
+        Dark: tileLayers.stamenTonerLite,
+        Darker: tileLayers.stamenToner
+      };
+
+      const map = L.map(htmlRef, {
+        center: L.latLng(40.7128, -74.006),
+        zoom: 12,
+        preferCanvas: true,
+        renderer: L.canvas()
+      });
+
+      const layerControl = L.control.layers(baseLayers, {}, { collapsed: false }); // prettier-ignore
+      map.addControl(layerControl);
+      map.addLayer(baseLayers.Light); // set default base layer
+
+      return map;
+    }
+
+    const radiusDetailsRef = document.getElementById("radius-details");
+    const mapHtmlRef = document.getElementById("map");
+    const map = makeMap(mapHtmlRef);
+
+    const radiusMapInstance = new rm.RadiusMap(
+      map,
+      function(layerId, radius, latitude, longitude) {
+        radiusDetailsRef.innerText = JSON.stringify({ layerId, radius, latitude, longitude }, null, 1); // prettier-ignore
+      },
+      function(message) {
+        console.warn("on error callback:", message);
+      }
+    );
+
+    radiusMapInstance.drawCircle(1600, 40.75, -73.98);
+
+    window.radiusMapInstance = radiusMapInstance;
+  </script>
+</html>
