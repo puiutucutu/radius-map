@@ -12,7 +12,7 @@ Preconfigured `leaflet` map using a circle from `leaflet-draw` for implementing 
 
 * programatically draw a circle
 * hooks for on draw and on draw error callbacks
-* does not bundle `leaflet` or `leaflet-draw` dependencies making for a light build
+* does not bundle `leaflet` or `leaflet-draw` dependencies making for a light build (264 kB)
 
 ## Use
 
@@ -20,15 +20,15 @@ Preconfigured `leaflet` map using a circle from `leaflet-draw` for implementing 
 
 Import `radius-map.umd.js` and access it via the `radiusMap` window global.
 
-Since `leaflet` and `leaflet-draw` are dependencies, they must be loaded before `radius-map` so that the globals `L` and `L.draw` exist in the browser's namespace.
+Since `leaflet` and `leaflet-draw` are dependencies, they must be loaded before `radius-map` so that `L` and `L.draw` exist in the browser's global namespace.
 
-See an example at `./examples/browser/index.html`.
+See example at `./examples/browser`.
 
 ### Node
 
-Only one export is provided via `./dist/radius-map.ejs.js`.  
+Only one export is provided via `./dist/radius-map.ejs.js`.
 
-See `./examples/node` for a standalone example.
+See example at `./examples/node`.
 
 #### Install
 
@@ -42,10 +42,21 @@ Similar to the `umd` build, the `ejs` build requires `leaflet` and `leaflet-draw
 
 After importing `radius-map`, your bundling tool is responsible for bundling the `leaflet` and `leaflet-draw` dependencies.
 
+```js
+import L from "leaflet";
+import "leaflet-draw";
+import { RadiusMap } from "radius-map";
+import "leaflet/dist/leaflet.css";
+import "leaflet-draw/dist/leaflet.draw-src.css";
+import "tachyons/css/tachyons.min.css";
+
+// ...
+```
+
 ### Development
 
 ```
 npm run start
 ```
 
-Outputs a bundled build in the `./development/dist` folder and serves the `./development/index.html` file locally. 
+Outputs a bundled build in the `./development/dist` folder and serves the `./development/index.html` file locally.
