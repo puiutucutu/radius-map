@@ -2,22 +2,23 @@
   "name": "radius-map",
   "version": "0.1.0",
   "description": "preconfigured `leaflet` map using a circle from `leaflet-draw` for implementing a within radius search on a map.",
-  "main": "dist/radiusmap.cjs.js",
-  "module": "dist/radiusmap.esm.js",
-  "browser": "dist/radiusmap.umd.js",
+  "main": "dist/radius-map.cjs.js",
+  "module": "dist/radius-map.esm.js",
+  "browser": "dist/radius-map.umd.js",
   "scripts": {
     "build": "cross-env BABEL_ENV=build NODE_ENV=production rollup -c rollup.config.js",
     "start": "cross-env BABEL_ENV=build rollup -w -c rollup.config.dev.js",
-    "coverage": "npm run test && tap --coverage-report=lcov",
-    "doc": "rimraf docs/* & npm run doc:html",
+    "doc": "npm-run-all -s doc:*",
+    "doc:clean": "rimraf docs/*",
     "doc:html": "documentation build ./src/index.js -f html -o docs",
     "preversion": "npm run build",
-    "version": "npm run doc && git add -A docs && git add -A dist",
-    "postversion": "git push && git push --tags"
+    "version": "npm run doc && git add -A docs",
+    "postversion": "git push && git push --tags",
+    "prepublishOnly": "npm run build",
+    "postpublish": "rimraf dist/"
   },
   "files": [
-    "/dist",
-    "/src"
+    "/dist"
   ],
   "peerDependencies": {
     "leaflet": "^1.5.1",
@@ -32,6 +33,7 @@
     "core-js": "^3.3.3",
     "cross-env": "^6.0.0",
     "documentation": "^12.1.2",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.0",
     "rollup": "^1.10.1",
     "rollup-plugin-babel": "^4.3.3",

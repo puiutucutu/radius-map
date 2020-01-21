@@ -32,7 +32,7 @@ module.exports = [
     output: {
       file: `development/${pkg.browser}`,
       format: "umd",
-      name: "rm",
+      name: "radiusMap",
       sourcemap: true,
       globals: {
         leaflet: "L"

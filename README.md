@@ -18,9 +18,9 @@ Preconfigured `leaflet` map using a circle from `leaflet-draw` for implementing 
 
 ### Browser
 
-Import `radius-map.umd.js` and access it via the snake case `rm` window global.
+Import `radius-map.umd.js` and access it via the `rm` window global.
 
-Since `leaflet` and `leaflet-draw` are depenencies, they must be loaded before `rm` so that the globals `L` and `L.draw` exist in the browser's namespace.
+Since `leaflet` and `leaflet-draw` are dependencies, they must be loaded before `rm` so that the globals `L` and `L.draw` exist in the browser's namespace.
 
 See an example at `./examples/browser/index.html`.
 

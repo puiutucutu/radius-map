@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "start": "parcel ./index.html"
+  },
+  "dependencies": {
+    "leaflet": "^1.5.1",
+    "leaflet-draw": "^1.0.4",
+    "parcel-bundler": "^1.12.4",
+    "radius-map": "https://github.com/puiutucutu/radius-map.git#dev",
+    "tachyons": "^4.11.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3"
+  }
+}
