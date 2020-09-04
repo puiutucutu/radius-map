@@ -48,7 +48,6 @@ import "leaflet-draw";
 import { RadiusMap } from "radius-map";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw-src.css";
-import "tachyons/css/tachyons.min.css";
 
 // ...
 ```
